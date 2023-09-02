@@ -46,9 +46,9 @@ https://github.com/kunalg123/riscv_workshop_collaterals/blob/master/run.sh
   - 64-bit Signed Numbers
   - Labwork For Signed and Unsigned Numbers
 
-<h2> ISA (Instruction Set Archhitecture) <h6>
-  - ISA defines the interface between a computer's hardware and its software, specifically how the processor and its components interact with the software instructions that drive the execution of tasks.
-  - It encompasses a set of instructions, addressing modes, data types, registers, memory organization, and the mechanisms for executing and managing instructions.
+# ISA (Instruction Set Archhitecture)
+  ISA defines the interface between a computer's hardware and its software, specifically how the processor and its components interact with the software instructions that drive the execution of tasks.
+ It encompasses a set of instructions, addressing modes, data types, registers, memory organization, and the mechanisms for executing and managing instructions.
 
 - **RISC-V (Reduced Instruction Set Computing - Five)**.
   - It is an open-source Instruction Set Architecture (ISA) that has gained significant attention and adoption in the world of computer architecture and semiconductor design.
