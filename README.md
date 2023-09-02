@@ -46,7 +46,7 @@ https://github.com/kunalg123/riscv_workshop_collaterals/blob/master/run.sh
   - 64-bit Signed Numbers
   - Labwork For Signed and Unsigned Numbers
 
-<h2>  ISA (Instruction Set Archhitecture) <h6>
+<h2> ISA (Instruction Set Archhitecture) <h6>
   - ISA defines the interface between a computer's hardware and its software, specifically how the processor and its components interact with the software instructions that drive the execution of tasks.
   - It encompasses a set of instructions, addressing modes, data types, registers, memory organization, and the mechanisms for executing and managing instructions.
 
