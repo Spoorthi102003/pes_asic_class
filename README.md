@@ -148,8 +148,9 @@ In big-endian representation, you store the most significant byte (MSB) at the l
 ![Screenshot from 2023-08-25 09-56-55](https://github.com/Spoorthi-03/pes_asic_class/assets/65489057/893008d9-0fd7-47e8-9457-710af9c4622f)
 
 ![Screenshot from 2023-08-25 09-58-43](https://github.com/Spoorthi-03/pes_asic_class/assets/65489057/4d39bbd8-57b6-4530-a2d5-c6508cb9ce2d)
+# To run C program on RISCV CPU
+![Screenshot from 2023-09-02 19-56-05](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/9dbc5b38-9b66-4bf0-9094-11caae6c9abe)
 
-![Screenshot from 2023-09-02 19-40-45](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/83908c5e-506a-4c70-926a-23f28683cb08)
 
 
 ### RISC-V Instructions:
