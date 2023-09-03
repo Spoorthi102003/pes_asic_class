@@ -333,5 +333,5 @@ multiple_modules_flat
 * gtkwave tb_dff_asyncres.vcd
 ![Screenshot from 2023-09-03 16-52-10](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/834d5cd5-eafc-46db-a260-9267e2ba80a3)
 
-Synthesis
+Synthesis 
 
