@@ -345,7 +345,7 @@ Synthesis
   ![Screenshot from 2023-09-03 17-01-59](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/9f61d6f9-d384-4bd2-b7fd-fae846a56e8d)
 
 # Asynchronous set D Flip-Flop
-# simulation
+simulation
 * Go to verilog_files directory where the design and test_bench are present
 * Run the following commands to simulate dff_async_set.v
 * iverilog dff_async_set.v tb_dff_async_set.v
