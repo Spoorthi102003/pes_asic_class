@@ -353,7 +353,7 @@ simulation
 * gtkwave tb_dff_async_set.vcd
 ![Screenshot from 2023-09-03 17-06-26](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/3902fb9d-f988-4806-8cc3-f230ca646c22)
 
-synthesis
+**synthesis**
 * Go to verilog_files directory and invoke yosys
 * Once you invoke yosys, Run following commands to Synthsis dff_async_set
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
