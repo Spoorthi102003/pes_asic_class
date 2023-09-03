@@ -249,8 +249,89 @@ It will also contain fast and slow version of same gate
 *Write netlist: write_verilog -noattr good_mux_netlist.v, !gvim good_mux_netlist.v
 ![Screenshot from 2023-08-27 14-15-17](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/1593d346-196f-4030-9b4b-41ecd033adad)
 # DAY 4
+# Introduction to timing dot libs
+# sky130_fd_sc_hd__tt_025C_1v80.lib
 
+
+    * sky130: This indicates that the library is associated with the SkyWater 130nm process technology. Process technology refers to the manufacturing process used to create integrated circuits (ICs) and determines factors like transistor size and performance characteristics.
+
+   * fd_sc_hd: These letters likely stand for different aspects of the library. "fd" might refer to "Foundation," suggesting that this library contains fundamental building blocks for digital IC design. "sc" could stand for "Standard Cells," which are pre-designed logic gates used in IC design. "hd" could refer to "high-density" libraries, which typically contain smaller, more compact cell designs for achieving higher logic density in ICs.
+
+   * tt_025C: This part of the name could refer to the library's operating conditions or temperature and voltage settings. "tt" might stand for "typical temperature," and "025C" could refer to 25 degrees Celsius, a common temperature for IC specifications. These conditions are important for characterizing the library's performance.
+
+   * 1v80: This likely represents the supply voltage for the library. In this case, "1v80" indicates a supply voltage of 1.8 volts, which is a common voltage level for digital ICs.
+
+Libraries contain
+*    Standard Cells: This library is likely to include a variety of standard cells, which are pre-designed building blocks for digital logic. Standard cells consist of logic gates (e.g., AND, OR, XOR), flip-flops, latches, multiplexers, and other fundamental digital components. These cells are characterized for the specific process technology (in this case, SkyWater 130nm) and operating conditions (temperature and voltage).
+
+*    Timing Information: The library will provide timing information for each standard cell. This information includes parameters like propagation delay, setup time, hold time, and other timing characteristics. Designers use this data to ensure that signals propagate correctly through the logic gates.
+
+*    Power Characteristics: Power consumption data is crucial for estimating the energy usage of a design. The library will typically include information on dynamic power (power consumed when the circuit is switching) and static power (power consumed when the circuit is idle).
+
+*    Pin and I/O Information: The library will specify the input and output pins for each standard cell, including pin names, directions (input or output), and electrical characteristics.
+
+*    Library Files: These library files often come in various formats, including Liberty (.lib) files, which contain detailed timing and power information, and Verilog models, which allow designers to use these standard cells in their digital designs.
+
+*    Characterization Data: The library may include data characterizing how the standard cells perform under different operating conditions, including variations in temperature and supply voltage. This helps designers account for variability in their designs.
+
+*    Technology Files: These files might also include information about the specific characteristics of the SkyWater 130nm process technology, such as transistor models, interconnect information, and other process-related data.
+  
+# Hierarchical vs Flat Synthesis
+Hierarchical vs Flat Synthesis
+
+  *  Hierarchical synthesis involves dividing the design into logical modules or blocks and synthesizing each module separately.
+  * These modules can have their own hierarchies, and they communicate through well-defined interfaces
+  * It enhances reusability, as individual modules can be reused in other designs.
+  * Supports better scalability for large, complex designs.
+
+Steps to Hierarchical Synthesis
+* Go to verilog_files directory
+* Type the following commands
+* yosys
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+* read_verilog multiple_modules.v
+* synth -top multiple_modules
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* show multiple_modules
+* write_verilog -noattr multiple_modules_hier.v
+* !gvim multiple_modules_hier.v 
+
+multiple_modules_hier.v
 ![Screenshot from 2023-08-27 14-12-32](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/6976d135-ab26-4533-abf0-c5c22d3d6611)
+![Screenshot from 2023-09-03 16-19-26](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/4e68e18e-8fe5-47a9-951c-6fa468102c4f)
 
-     
+# Flat Synthesis
+Steps to Flat Synthesis
+* Go to verilog_files directory
+* Type the following commands
+* yosys
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+* read_verilog multiple_modules.v
+* synth -top multiple_modules
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* flatten
+* show
+* write_verilog -noattr multiple_modules_flat.v
+* !gvim multiple_modules_flat.v
+
+![Screenshot from 2023-09-03 16-41-01](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/fbfb0611-5633-4c4a-83ca-59573d7b4564)
+
+multiple_modules_flat
+![Screenshot from 2023-09-03 16-42-29](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/36718487-30fc-449e-b1f8-47786e03240b)
+
+# Various Flop Coding Styles and optimization
+* Asynchronous Reset D Flip-Flop
+* Asynchronous Set D Flip-Flop
+* Synchronous Reset D Flip-Flop
+* D Flip-Flop with Asynchronous Reset and Synchronous Reset
+
+# Asynchronous Reset D Flip-Flop synthesis simulations
+* Go to verilog_files directory where the design and test_bench are present
+* Run the following commands to simulate Asynchronous Reset D Flip-Flop
+* iverilog dff_asyncres.v tb_dff_asyncres.v
+* ./a.out
+* gtkwave tb_dff_asyncres.vcd
+![Screenshot from 2023-09-03 16-52-10](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/834d5cd5-eafc-46db-a260-9267e2ba80a3)
+
+Synthesis
 
