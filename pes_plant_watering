@@ -1,4 +1,4 @@
-module pes_plat_watering(
+module pes_plant_watering(
     input wire clk,            // Clock input
     input wire reset,          // Reset input
     input wire moisture_sensor, // Soil moisture sensor input (1 when dry, 0 when wet)
