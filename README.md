@@ -284,7 +284,7 @@ Hierarchical vs Flat Synthesis
   * It enhances reusability, as individual modules can be reused in other designs.
   * Supports better scalability for large, complex designs.
 
-Steps to Hierarchical Synthesis
+**Steps to Hierarchical Synthesis**
 * Go to verilog_files directory
 * Type the following commands
 * yosys
@@ -296,7 +296,7 @@ Steps to Hierarchical Synthesis
 * write_verilog -noattr multiple_modules_hier.v
 * !gvim multiple_modules_hier.v 
 
-multiple_modules_hier.v
+**multiple_modules_hier.v**
 ![Screenshot from 2023-08-27 14-12-32](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/6976d135-ab26-4533-abf0-c5c22d3d6611)
 ![Screenshot from 2023-09-03 16-19-26](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/4e68e18e-8fe5-47a9-951c-6fa468102c4f)
 
@@ -316,7 +316,7 @@ Steps to Flat Synthesis
 
 ![Screenshot from 2023-09-03 16-41-01](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/fbfb0611-5633-4c4a-83ca-59573d7b4564)
 
-multiple_modules_flat
+**multiple_modules_flat**
 ![Screenshot from 2023-09-03 16-42-29](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/36718487-30fc-449e-b1f8-47786e03240b)
 
 # Various Flop Coding Styles and optimization
@@ -333,7 +333,7 @@ multiple_modules_flat
 * gtkwave tb_dff_asyncres.vcd
 ![Screenshot from 2023-09-03 16-52-10](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/834d5cd5-eafc-46db-a260-9267e2ba80a3)
 
-Synthesis
+**Synthesis**
 * Go to verilog_files directory and invoke yosys
 * Once you invoke yosys, Run following commands to Synthsis dff_asyncres
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
@@ -366,7 +366,7 @@ synthesis
 ![Screenshot from 2023-09-03 17-11-55](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/30ae4d1e-1da6-400c-9566-339c78957bfe)
 
 # Asynchronous Reset D Flip-Flop
-simulation
+**simulation**
 * Go to verilog_files directory where the design and test_bench are present
 * Run the following commands to simulate dff_syncres.v
 * iverilog dff_syncres.v tb_dff_syncres.v
@@ -375,7 +375,7 @@ simulation
 
 ![Screenshot from 2023-09-03 17-20-17](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/3278289d-7c80-419e-a4a2-f8ae0156369c)
 
-synthesis
+**synthesis**
 * Go to verilog_files directory and invoke yosys
 * Once you invoke yosys, Run following commands to Synthsis dff_syncres
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
@@ -388,7 +388,7 @@ synthesis
 ![Screenshot from 2023-09-03 17-23-47](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/eded339e-b4be-4ab9-bf57-271ad068a792)
 
 # Interesting optimisations
-synthesis
+**synthesis**
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
 * read_verilog mult_2.v
 * synth -top mul2
@@ -400,10 +400,10 @@ synthesis
 
 ![Screenshot from 2023-09-03 18-45-48](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/961db94b-abc1-403c-a456-1bebacf16ddf)
 
-mul2_netlist
+**mul2_netlist**
 ![Screenshot from 2023-09-03 18-47-15](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/777a66c0-d36a-4ace-b80b-82e57e6484f6)
 
-mul_8.v
+**mul_8.v**
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
 * read_verilog mult_8.v
 * synth -top mult8
@@ -412,9 +412,10 @@ mul_8.v
 * write_verilog -noattr mult8_netlist.v
 * !gvim mult8_netlist.v
 ![Screenshot from 2023-09-03 18-54-04](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/956e76b4-3dc4-44a0-8850-e5ad3fd4a732)
-
 ![Screenshot from 2023-09-03 18-54-52](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/33868743-bcbc-43ac-bdd7-99d8e6a6837e)
-mult8_netlist
+
+**mult8_netlist**
+
 ![Screenshot from 2023-09-03 18-55-52](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/843c87de-ba5b-4899-b0ff-4bc118a13b05)
 
 # Introduction to optimizations
@@ -422,4 +423,5 @@ mult8_netlist
   1. Combinational optimization
   2. Sequential optimizations
 # Combinational Logic Optimizations
+
 
