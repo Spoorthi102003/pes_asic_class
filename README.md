@@ -417,7 +417,7 @@ simulation
 **mult8_netlist**
 
 ![Screenshot from 2023-09-03 18-55-52](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/843c87de-ba5b-4899-b0ff-4bc118a13b05)
-
+# DAY 5
 # Introduction to optimizations
   There are two types of optimizations.
   1. Combinational optimization
