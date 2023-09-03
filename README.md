@@ -333,5 +333,60 @@ multiple_modules_flat
 * gtkwave tb_dff_asyncres.vcd
 ![Screenshot from 2023-09-03 16-52-10](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/834d5cd5-eafc-46db-a260-9267e2ba80a3)
 
-Synthesis 
+Synthesis
+* Go to verilog_files directory and invoke yosys
+* Once you invoke yosys, Run following commands to Synthsis dff_asyncres
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+*  read_verilog dff_asyncres.v
+*  synth -top dff_asyncres
+*  dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+*  abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+*  show
+  ![Screenshot from 2023-09-03 17-01-59](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/9f61d6f9-d384-4bd2-b7fd-fae846a56e8d)
+
+# Asynchronous set D Flip-Flop
+# simulation
+* Go to verilog_files directory where the design and test_bench are present
+* Run the following commands to simulate dff_async_set.v
+* iverilog dff_async_set.v tb_dff_async_set.v
+* ./a.out
+* gtkwave tb_dff_async_set.vcd
+![Screenshot from 2023-09-03 17-06-26](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/3902fb9d-f988-4806-8cc3-f230ca646c22)
+
+synthesis
+* Go to verilog_files directory and invoke yosys
+* Once you invoke yosys, Run following commands to Synthsis dff_async_set
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+* read_verilog dff_async_set.v
+*  synth -top dff_async_set
+* dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+*  abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* show
+
+![Screenshot from 2023-09-03 17-11-55](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/30ae4d1e-1da6-400c-9566-339c78957bfe)
+
+# Asynchronous Reset D Flip-Flop
+simulation
+* Go to verilog_files directory where the design and test_bench are present
+* Run the following commands to simulate dff_syncres.v
+* iverilog dff_syncres.v tb_dff_syncres.v
+* ./a.out
+* gtkwave tb_dff_syncres.vcd
+
+![Screenshot from 2023-09-03 17-20-17](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/3278289d-7c80-419e-a4a2-f8ae0156369c)
+
+synthesis
+* Go to verilog_files directory and invoke yosys
+* Once you invoke yosys, Run following commands to Synthsis dff_syncres
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+* read_verilog dff_syncres.v
+* synth -top dff_syncres
+* dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* show
+
+![Screenshot from 2023-09-03 17-23-47](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/eded339e-b4be-4ab9-bf57-271ad068a792)
+
+
+
 
