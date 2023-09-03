@@ -201,20 +201,56 @@ RISC-V instructions have a common structure with several fields that serve diffe
 
 
 ## DAY 3
-![Screenshot from 2023-08-27 14-15-17](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/1593d346-196f-4030-9b4b-41ecd033adad)
+# I verilog and GTK Wave
 
-![Screenshot from 2023-08-27 14-12-32](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/6976d135-ab26-4533-abf0-c5c22d3d6611)
-
-![Screenshot from 2023-08-27 14-07-16](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/fe9465cc-dc3a-481f-85cc-b979ab22ad89)
-
-![Screenshot from 2023-08-27 14-06-04](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/27cd1ded-c391-4989-a949-803190414c50)
-
-![Screenshot from 2023-08-27 13-02-20](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/f64c1377-3730-44dd-af2b-33f896e7053c)
+   * Make new directory mkdie VSD
+   * git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+   * This should create a folder sky130RTLDesignAndSynthesisWorkshop in VDS directory
+   * You could see two folders under sky130RTLDesignAndSynthesisWorkshop
+        my_lib: It contains all the standard cell libraries and verilog module
+        verilog_files: It contains all the source code and testbench required for the lab
+   * Go to verilog_files directory
+   * Load Design and Testbench using the command iverilog good_mux.v tb_good_mux.v
 
 ![Screenshot from 2023-08-27 13-00-45](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/c7ce5476-6998-4127-aa43-cad7c3a03dd4)
 
+![Screenshot from 2023-08-27 13-02-20](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/f64c1377-3730-44dd-af2b-33f896e7053c)
+
+* We should execute the generated file it would dump gtkwave tb_good_mux.vcd file
+* Load the vcd file to simulator using the command gtkwave tb_good_mux.vcd
 
 ![Screenshot from 2023-08-27 12-46-54](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/c7336e29-a436-4342-8ebb-ff9480d247f3)
 
 
 ![Screenshot from 2023-08-27 12-46-32](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/5d42d255-4a5f-4945-a4bc-5f9993cd3731)
+
+# Introduction to yosis
+Yosys is an synthesizer which is used to convert RTL to netlist
+To verify synthesis Netlist need to be fed to iverilog along with testbench.vcd file generated from iverilog need to be fed to gtkwave simulator.The output we get should be same as the output we got during RTL simulator
+
+![image](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/a782d294-79ba-41e9-b888-3900f0480eaa)
+![image](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/14d188e6-cb6d-409d-b849-6956bdbbbcdf)
+
+# Introduction to logic synthesis
+Logic synthesis is a vital step in digital circuit design where high-level descriptions of circuits are transformed into specific implementations using logic gates. It optimizes circuits for factors like performance, area, power, and cost. The process includes library mapping, optimization, technology mapping, timing analysis, and verification. It's an iterative process often done with specialized software tools, enabling efficient hardware design.
+Logic synthesis tools use a library of standard cells. These cells are predefined logic gates with different functionalities and characteristics
+It will also contain fast and slow version of same gate
+
+# Lab using Yosys and Sky130 PDKs
+* get to verilog_files directory, Invoke yosys by using the command "yosys"
+* Read library: read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* Read design: read_verilog good_mux.v
+* Generate netlist: abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+![Screenshot from 2023-08-27 14-06-04](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/27cd1ded-c391-4989-a949-803190414c50)
+* Logic realized: show
+![Screenshot from 2023-08-27 14-07-16](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/fe9465cc-dc3a-481f-85cc-b979ab22ad89)
+
+*Write netlist: write_verilog -noattr good_mux_netlist.v, !gvim good_mux_netlist.v
+![Screenshot from 2023-08-27 14-15-17](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/1593d346-196f-4030-9b4b-41ecd033adad)
+# DAY 4
+
+![Screenshot from 2023-08-27 14-12-32](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/6976d135-ab26-4533-abf0-c5c22d3d6611)
+
+     
+
