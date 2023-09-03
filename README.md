@@ -387,6 +387,39 @@ synthesis
 
 ![Screenshot from 2023-09-03 17-23-47](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/eded339e-b4be-4ab9-bf57-271ad068a792)
 
+# Interesting optimisations
+synthesis
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+* read_verilog mult_2.v
+* synth -top mul2
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* show
+* write_verilog -noattr mul2_netlist.v
+* !gvim mul2_netlist.v
+![Screenshot from 2023-09-03 18-46-28](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/c8233064-f558-46a1-86b4-697fdb3df570)
 
+![Screenshot from 2023-09-03 18-45-48](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/961db94b-abc1-403c-a456-1bebacf16ddf)
 
+mul2_netlist
+![Screenshot from 2023-09-03 18-47-15](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/777a66c0-d36a-4ace-b80b-82e57e6484f6)
+
+mul_8.v
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+* read_verilog mult_8.v
+* synth -top mult8
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* show
+* write_verilog -noattr mult8_netlist.v
+* !gvim mult8_netlist.v
+![Screenshot from 2023-09-03 18-54-04](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/956e76b4-3dc4-44a0-8850-e5ad3fd4a732)
+
+![Screenshot from 2023-09-03 18-54-52](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/33868743-bcbc-43ac-bdd7-99d8e6a6837e)
+mult8_netlist
+![Screenshot from 2023-09-03 18-55-52](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/843c87de-ba5b-4899-b0ff-4bc118a13b05)
+
+# Introduction to optimizations
+  There are two types of optimizations.
+  1. Combinational optimization
+  2. Sequential optimizations
+# Combinational Logic Optimizations
 
