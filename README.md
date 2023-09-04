@@ -423,5 +423,73 @@ simulation
   1. Combinational optimization
   2. Sequential optimizations
 # Combinational Logic Optimizations
+**opt_check.v**
+module opt_check (input a , input b , output y);
+	assign y = a?b:0;
+endmodule
+**synthesis**
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+* read_verilog opt_check.v
+* synth -top opt_check
+* opt_clean -purge
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* show
+
+![Screenshot from 2023-09-04 17-56-41](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/bd1c23cf-dd29-4ffa-a635-2afff96db154)
+**opt_check2.v**
+module opt_check2 (input a , input b , output y);
+	assign y = a?1:b;
+endmodule
+**synthesis**
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+* read_verilog opt_check2.v
+* synth -top opt_check2
+* opt_clean -purge
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* show
+
+![Screenshot from 2023-09-04 17-59-09](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/234c3963-802d-4532-b4c3-5ec55945b5ff)
+**opt_check3.v**
+module opt_check3 (input a , input b, input c , output y);
+	assign y = a?(c?b:0):0;
+endmodule
+**synthesis**
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+* read_verilog opt_check3.v
+* synth -top opt_check3
+* opt_clean -purge
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* show
+![Screenshot from 2023-09-04 18-01-11](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/45aaf05e-873e-4e92-b6a9-e3c23ef73e66)
+**multiple_module_opt.v**
+  module sub_module1(input a , input b , output y);
+ assign y = a & b;
+endmodule
 
 
+module sub_module2(input a , input b , output y);
+ assign y = a^b;
+endmodule
+
+
+module multiple_module_opt(input a , input b , input c , input d , output y);
+wire n1,n2,n3;
+
+sub_module1 U1 (.a(a) , .b(1'b1) , .y(n1));
+sub_module2 U2 (.a(n1), .b(1'b0) , .y(n2));
+sub_module2 U3 (.a(b), .b(d) , .y(n3));
+
+assign y = c | (b & n1); 
+
+endmodule
+**synthesis**
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+* read_verilog multiple_module_opt.v
+* synth -top multiple_module_opt
+* flatten
+* opt_clean -purge
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* show
+![Screenshot from 2023-09-04 18-03-50](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/f410d7fc-5b1b-438b-b661-b6778fe61b11)
+# Sequential logic optimizations
+**dff_const1.v**
