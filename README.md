@@ -659,11 +659,11 @@ Gate-level simulation is a method used in electronics design to test and verify 
 **Blocking Statements**
 
 
-    Blocking statements execute sequentially in the order they appear within a procedural block or always block. When a blocking assignment or operation is encountered, the simulation halts and waits for it to complete before moving on to the next statement. Blocking assignments are typically used to describe combinational logic, where the order of execution doesn't matter, and each assignment depends on the previous one.
+ Blocking statements execute sequentially in the order they appear within a procedural block or always block. When a blocking assignment or operation is encountered, the simulation halts and waits for it to complete before moving on to the next statement. Blocking assignments are typically used to describe combinational logic, where the order of execution doesn't matter, and each assignment depends on the previous one.
 
 **Non-Blocking Statements**
 
-    Non-blocking statements allow concurrent execution within a procedural block or always block, making them suitable for describing synchronous digital circuits.When a non-blocking assignment or operation is encountered, the simulation does not wait for it to complete. Instead, it schedules the assignments to occur in parallel.Non-blocking assignments are typically used to model sequential logic, like flip-flops and registers, where parallel execution is required.
+ Non-blocking statements allow concurrent execution within a procedural block or always block, making them suitable for describing synchronous digital circuits.When a non-blocking assignment or operation is encountered, the simulation does not wait for it to complete. Instead, it schedules the assignments to occur in parallel.Non-blocking assignments are typically used to model sequential logic, like flip-flops and registers, where parallel execution is required.
 
 
 # Labs on GLS and Synthesis-Simulation Mismatch
