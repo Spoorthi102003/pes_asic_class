@@ -1,3 +1,5 @@
+![image](https://github.com/VardhanSuroshi/pes_asic_class/assets/132068498/33403244-c9dd-4aef-a022-da52e2eef51c)
+
 # VLSI Physical Design for ASICs
 The objective of VLSI (Very Large Scale Integration) physical design for ASICs (Application-Specific Integrated Circuits) is to transform a digital circuit's logical representation into a physical layout that meets various performance, power, area, and manufacturability requirements.
 # SKILL OUTCOMES
@@ -253,13 +255,13 @@ It will also contain fast and slow version of same gate
 # sky130_fd_sc_hd__tt_025C_1v80.lib
 
 
-    * sky130: This indicates that the library is associated with the SkyWater 130nm process technology. Process technology refers to the manufacturing process used to create integrated circuits (ICs) and determines factors like transistor size and performance characteristics.
+* sky130: This indicates that the library is associated with the SkyWater 130nm process technology. Process technology refers to the manufacturing process used to create integrated circuits (ICs) and determines factors like transistor size and performance characteristics.
 
-   * fd_sc_hd: These letters likely stand for different aspects of the library. "fd" might refer to "Foundation," suggesting that this library contains fundamental building blocks for digital IC design. "sc" could stand for "Standard Cells," which are pre-designed logic gates used in IC design. "hd" could refer to "high-density" libraries, which typically contain smaller, more compact cell designs for achieving higher logic density in ICs.
+* fd_sc_hd: These letters likely stand for different aspects of the library. "fd" might refer to "Foundation," suggesting that this library contains fundamental building blocks for digital IC design. "sc" could stand for "Standard Cells," which are pre-designed logic gates used in IC design. "hd" could refer to "high-density" libraries, which typically contain smaller, more compact cell designs for achieving higher logic density in ICs.
 
-   * tt_025C: This part of the name could refer to the library's operating conditions or temperature and voltage settings. "tt" might stand for "typical temperature," and "025C" could refer to 25 degrees Celsius, a common temperature for IC specifications. These conditions are important for characterizing the library's performance.
+* tt_025C: This part of the name could refer to the library's operating conditions or temperature and voltage settings. "tt" might stand for "typical temperature," and "025C" could refer to 25 degrees Celsius, a common temperature for IC specifications. These conditions are important for characterizing the library's performance.
 
-   * 1v80: This likely represents the supply voltage for the library. In this case, "1v80" indicates a supply voltage of 1.8 volts, which is a common voltage level for digital ICs.
+* 1v80: This likely represents the supply voltage for the library. In this case, "1v80" indicates a supply voltage of 1.8 volts, which is a common voltage level for digital ICs.
 
 Libraries contain
 *    Standard Cells: This library is likely to include a variety of standard cells, which are pre-designed building blocks for digital logic. Standard cells consist of logic gates (e.g., AND, OR, XOR), flip-flops, latches, multiplexers, and other fundamental digital components. These cells are characterized for the specific process technology (in this case, SkyWater 130nm) and operating conditions (temperature and voltage).
@@ -346,7 +348,7 @@ Steps to Flat Synthesis
 
 # Asynchronous set D Flip-Flop
 
-**simulation**
+**Simulation**
 
 * Go to verilog_files directory where the design and test_bench are present
 * Run the following commands to simulate dff_async_set.v
@@ -355,7 +357,7 @@ Steps to Flat Synthesis
 * gtkwave tb_dff_async_set.vcd
 ![Screenshot from 2023-09-03 17-06-26](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/3902fb9d-f988-4806-8cc3-f230ca646c22)
 
-**synthesis**
+**Synthesis**
 * Go to verilog_files directory and invoke yosys
 * Once you invoke yosys, Run following commands to Synthsis dff_async_set
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
@@ -368,7 +370,7 @@ Steps to Flat Synthesis
 ![Screenshot from 2023-09-03 17-11-55](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/30ae4d1e-1da6-400c-9566-339c78957bfe)
 
 # Asynchronous Reset D Flip-Flop
-**simulation**
+**Simulation**
 * Go to verilog_files directory where the design and test_bench are present
 * Run the following commands to simulate dff_syncres.v
 * iverilog dff_syncres.v tb_dff_syncres.v
@@ -377,7 +379,7 @@ Steps to Flat Synthesis
 
 ![Screenshot from 2023-09-03 17-20-17](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/3278289d-7c80-419e-a4a2-f8ae0156369c)
 
-**synthesis**
+**Synthesis**
 * Go to verilog_files directory and invoke yosys
 * Once you invoke yosys, Run following commands to Synthsis dff_syncres
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
@@ -390,7 +392,7 @@ Steps to Flat Synthesis
 ![Screenshot from 2023-09-03 17-23-47](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/eded339e-b4be-4ab9-bf57-271ad068a792)
 
 # Interesting optimisations
-**synthesis**
+**Synthesis**
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
 * read_verilog mult_2.v
 * synth -top mul2
@@ -431,7 +433,7 @@ module opt_check (input a , input b , output y);
 	assign y = a?b:0;
 endmodule
 
-**synthesis**
+**Synthesis**
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
 * read_verilog opt_check.v
 * synth -top opt_check
@@ -447,7 +449,7 @@ module opt_check2 (input a , input b , output y);
 	assign y = a?1:b;
 endmodule
 
-**synthesis**
+**Synthesis**
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
 * read_verilog opt_check2.v
 * synth -top opt_check2
@@ -462,7 +464,7 @@ module opt_check3 (input a , input b, input c , output y);
 	assign y = a?(c?b:0):0;
 endmodule
 
-**synthesis**
+**Synthesis**
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
 * read_verilog opt_check3.v
 * synth -top opt_check3
