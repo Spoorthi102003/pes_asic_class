@@ -691,6 +691,73 @@ endmodule
 * iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_mux_netlist.v tb_bad_mux.v
 * ./a.out
 * gtkwave tb_bad_mux.vcd 
+![Screenshot from 2023-09-04 19-18-11](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/9cb1ff17-a312-4858-8fe8-ec9d3bbfdc67)
 
+**bad_mux.v**
 
+module bad_mux (input i0 , input i1 , input sel , output reg y);
+always @ (sel)
+begin
+	if(sel)
+		y <= i1;
+	else 
+		y <= i0;
+end
+endmodule
 
+**RTL Simulation**
+
+* iverilog bad_mux.v tb_bad_mux.v
+* ./a.out
+* gtkwave tb_bad_mux.vcd
+
+![Screenshot from 2023-09-04 19-20-36](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/29553a2d-8738-43d1-8009-56a7817f6c5c)
+
+**Synthesis**
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* read_verilog bad_mux.v
+* synth -top bad_mux
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* write_verilog -noattr bad_mux_netlist.v
+* show
+
+![Screenshot from 2023-09-04 19-22-20](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/0ea05872-dbab-40c9-8b06-13378ce943b2)
+
+* GLS To to Gate level simulation, Invoke iverilog with verilog modules
+* iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_mux_netlist.v tb_bad_mux.v
+* ./a.out
+* gtkwave tb_bad_mux.vcd
+
+![Screenshot from 2023-09-04 19-25-21](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/c44479e6-81ef-4a7f-b2e3-6bd7f81c5c92)
+
+# Labs on synth-sim mismatch for blocking statement 
+**blocking_caveat.v**
+module blocking_caveat (input a , input b , input  c, output reg d); 
+reg x;
+always @ (*)
+begin
+	d = x & c;
+	x = a | b;
+end
+endmodule
+
+**RTL Simulation**
+* iverilog blocking_caveat.v tb_blocking_caveat.v
+* ./a.out
+* gtkwave tb_blocking_caveat.vcd
+
+![Screenshot from 2023-09-04 19-29-32](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/defc135d-1101-449e-92df-8df3abe77c00)
+
+**Synthesis**
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* read_verilog blocking_caveat.v
+* synth -top blocking_caveat
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* write_verilog -noattr blocking_caveat_netlist.v
+* show
+![Screenshot from 2023-09-04 19-30-55](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/8ddae7de-031f-47d0-b786-5e8daba06dc8)
+
+GLS To to Gate level simulation, Invoke iverilog with verilog modules
+* iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_netlist.v tb_blocking_caveat.v
+* ./a.out
+* gtkwave tb_blocking_caveat.vcd
