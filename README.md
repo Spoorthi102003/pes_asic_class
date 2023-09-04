@@ -345,7 +345,9 @@ Steps to Flat Synthesis
   ![Screenshot from 2023-09-03 17-01-59](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/9f61d6f9-d384-4bd2-b7fd-fae846a56e8d)
 
 # Asynchronous set D Flip-Flop
-simulation
+
+**simulation**
+
 * Go to verilog_files directory where the design and test_bench are present
 * Run the following commands to simulate dff_async_set.v
 * iverilog dff_async_set.v tb_dff_async_set.v
@@ -424,9 +426,11 @@ simulation
   2. Sequential optimizations
 # Combinational Logic Optimizations
 **opt_check.v**
+
 module opt_check (input a , input b , output y);
 	assign y = a?b:0;
 endmodule
+
 **synthesis**
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
 * read_verilog opt_check.v
@@ -436,10 +440,13 @@ endmodule
 * show
 
 ![Screenshot from 2023-09-04 17-56-41](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/bd1c23cf-dd29-4ffa-a635-2afff96db154)
+
 **opt_check2.v**
+
 module opt_check2 (input a , input b , output y);
 	assign y = a?1:b;
 endmodule
+
 **synthesis**
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
 * read_verilog opt_check2.v
@@ -449,10 +456,12 @@ endmodule
 * show
 
 ![Screenshot from 2023-09-04 17-59-09](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/234c3963-802d-4532-b4c3-5ec55945b5ff)
+
 **opt_check3.v**
 module opt_check3 (input a , input b, input c , output y);
 	assign y = a?(c?b:0):0;
 endmodule
+
 **synthesis**
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
 * read_verilog opt_check3.v
@@ -461,6 +470,7 @@ endmodule
 * abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 * show
 ![Screenshot from 2023-09-04 18-01-11](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/45aaf05e-873e-4e92-b6a9-e3c23ef73e66)
+
 **multiple_module_opt.v**
   module sub_module1(input a , input b , output y);
  assign y = a & b;
@@ -482,7 +492,8 @@ sub_module2 U3 (.a(b), .b(d) , .y(n3));
 assign y = c | (b & n1); 
 
 endmodule
-**synthesis**
+
+**Synthesis**
 * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
 * read_verilog multiple_module_opt.v
 * synth -top multiple_module_opt
@@ -493,6 +504,7 @@ endmodule
 ![Screenshot from 2023-09-04 18-03-50](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/f410d7fc-5b1b-438b-b661-b6778fe61b11)
 # Sequential logic optimizations
 **dff_const1.v**
+
 module dff_const1(input clk, input reset, output reg q);
 always @(posedge clk, posedge reset)
 begin
@@ -504,12 +516,13 @@ end
 
 endmodule
 
-**simulate**
+**Simulate**
 * iverilog dff_const1.v tb_dff_const1.v
 * ./a.out
 * gtkwave tb_dff_const1.vcd
 ![Screenshot from 2023-09-04 18-08-55](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/ce75a663-ebd0-420e-8f66-a125a7d3208a)
-**synthesis**
+
+**Synthesis**
  * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
  * read_verilog dff_const1.v
  * synth -top dff_const1
@@ -529,6 +542,7 @@ begin
 end
 
 endmodule
+
 **Simulate**
 * iverilog dff_const1.v tb_dff_const2.v
 * ./a.out
@@ -545,6 +559,7 @@ endmodule
 ![Screenshot from 2023-09-04 18-21-58](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/ecfb2ddd-01ee-43ad-8fbb-a7dadb80484b)
 
 **dff_const3.v**
+
 module dff_const3(input clk, input reset, output reg q);
 reg q1;
 
@@ -599,6 +614,7 @@ begin
 end
 
 endmodule
+
 **Synthesis**
  * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
  * read_verilog counter_opt.v
@@ -625,6 +641,7 @@ end
 
 endmodule
 
+
 **Synthesis**
 *  read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
 *  read_verilog counter_opt2.v
@@ -635,6 +652,7 @@ endmodule
 
 ![Screenshot from 2023-09-04 18-33-10](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/ce7216b4-205e-47b3-ab59-5524ec8592ef)
 
+# DAY 5
 # GLS Synthesis-Simulation mismatch and Blocking Non-blocking statements
 # GLS Concepts And Flow Using Iverilog
 **Gate level simulation**
@@ -653,7 +671,7 @@ Gate-level simulation is a method used in electronics design to test and verify 
 
 # Synthesis-Simulation mismatch
 
-    Synthesis-simulation mismatch is when there are differences between how a digital circuit behaves in simulation at the RTL level and how it behaves after gate-level synthesis. This can occur due to optimization, clock domain issues, library differences, or other factors.To address it, ensure consistent tool versions, check synthesis settings, debug with simulation tools, and follow best practices in RTL coding and design.Resolving these mismatches is crucial for reliable hardware implementation.
+Synthesis-simulation mismatch is when there are differences between how a digital circuit behaves in simulation at the RTL level and how it behaves after gate-level synthesis. This can occur due to optimization, clock domain issues, library differences, or other factors.To address it, ensure consistent tool versions, check synthesis settings, debug with simulation tools, and follow best practices in RTL coding and design.Resolving these mismatches is crucial for reliable hardware implementation.
 
 # Blocking And Non-Blocking Statements
 **Blocking Statements**
