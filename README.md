@@ -529,4 +529,168 @@ begin
 end
 
 endmodule
+**Simulate**
+* iverilog dff_const1.v tb_dff_const2.v
+* ./a.out
+* gtkwave tb_dff_const2.vcd
+![Screenshot from 2023-09-04 18-18-23](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/59f7f012-004d-403b-a90a-1a26f2a052c0)
+
+**Synthesis**
+ * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+ * read_verilog dff_const2.v
+ * synth -top dff_const2
+ * dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+ * abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+ * show
+![Screenshot from 2023-09-04 18-21-58](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/ecfb2ddd-01ee-43ad-8fbb-a7dadb80484b)
+
+**dff_const3.v**
+module dff_const3(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b1;
+		q1 <= 1'b0;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+
+endmodule
+
+**Simulate**
+
+* iverilog dff_const3.v tb_dff_const2.v
+* ./a.out
+* gtkwave tb_dff_const3.vcd
+
+![Screenshot from 2023-09-04 18-24-18](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/20bd134d-d038-45ff-8b0e-8761805bf977)
+
+**Synthesis**
+*  read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+*  read_verilog dff_const3.v
+*  synth -top dff_const3
+*  dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+*  abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+*  show
+  
+![Screenshot from 2023-09-04 18-26-12](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/22dfc416-4a9c-43f3-8401-0aa0775fe9eb)
+
+
+# Sequential optimzations for unused outputs
+**counter_opt.v**
+
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = count[0];
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+**Synthesis**
+ * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+ * read_verilog counter_opt.v
+ * synth -top counter_opt
+ * dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+ * abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+ * show
+
+![Screenshot from 2023-09-04 18-28-21](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/494ccaa9-e43f-4885-89e8-bc1a7fd5e673)
+
+**counter_opt2.v**
+
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = (count[2:0] == 3'b100);
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+
+**Synthesis**
+*  read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+*  read_verilog counter_opt2.v
+*  synth -top counter_opt
+*  dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+*  abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+*  show
+
+![Screenshot from 2023-09-04 18-33-10](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/ce7216b4-205e-47b3-ab59-5524ec8592ef)
+
+# GLS Synthesis-Simulation mismatch and Blocking Non-blocking statements
+# GLS Concepts And Flow Using Iverilog
+**Gate level simulation**
+
+Gate-level simulation is a method used in electronics design to test and verify digital circuits at the level of individual logic gates and flip-flops.It's crucial for checking functionality, timing, power consumption, and generating test patterns for integrated circuits.It operates at a lower abstraction level than higher-level simulations and is essential for debugging and ensuring circuit correctness.
+**To perform gate-level simulation using Icarus Verilog (iverilog):**
+
+
+   * Write RTL code.
+   * Synthesize to generate gate-level netlist.
+   * Create a testbench in Verilog.
+   * Compile both netlist and testbench.
+   * Run simulation with compiled files.Debug and iterate as needed.
+   * Perform timing analysis if necessary.
+   * Generate test vectors for manufacturing tests.
+
+# Synthesis-Simulation mismatch
+
+    Synthesis-simulation mismatch is when there are differences between how a digital circuit behaves in simulation at the RTL level and how it behaves after gate-level synthesis. This can occur due to optimization, clock domain issues, library differences, or other factors.To address it, ensure consistent tool versions, check synthesis settings, debug with simulation tools, and follow best practices in RTL coding and design.Resolving these mismatches is crucial for reliable hardware implementation.
+
+# Blocking And Non-Blocking Statements
+**Blocking Statements**
+
+
+    Blocking statements execute sequentially in the order they appear within a procedural block or always block. When a blocking assignment or operation is encountered, the simulation halts and waits for it to complete before moving on to the next statement. Blocking assignments are typically used to describe combinational logic, where the order of execution doesn't matter, and each assignment depends on the previous one.
+
+**Non-Blocking Statements**
+
+    Non-blocking statements allow concurrent execution within a procedural block or always block, making them suitable for describing synchronous digital circuits.When a non-blocking assignment or operation is encountered, the simulation does not wait for it to complete. Instead, it schedules the assignments to occur in parallel.Non-blocking assignments are typically used to model sequential logic, like flip-flops and registers, where parallel execution is required.
+
+
+# Labs on GLS and Synthesis-Simulation Mismatch
+**ternary_operator_mux.v**
+module ternary_operator_mux (input i0 , input i1 , input sel , output y);
+	assign y = sel?i1:i0;
+endmodule
+**RTL Simulation**
+* iverilog ternary_operator_mux.v tb_ternary_operator_mux.v
+* ./a.out
+* gtkwave tb_ternary_operator_mux.vcd
+![Screenshot from 2023-09-04 18-50-03](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/6cfa972f-a89f-40e7-aaae-b82996fbca29)
+
+**Synthesis**
+* read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* read_verilog ternary_operator_mux.v
+* synth -top ternary_operator_mux
+* abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+* write_verilog -noattr ternary_operator_mux_netlist.v
+* show
+
+![Screenshot from 2023-09-04 18-55-50](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/6821ee24-da3a-4312-830d-0efe2613a3fc)
+
+* GLS To to Gate level simulation, Invoke iverilog with verilog modules
+* iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_mux_netlist.v tb_bad_mux.v
+* ./a.out
+* gtkwave tb_bad_mux.vcd 
+
+
 
