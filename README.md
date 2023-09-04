@@ -654,7 +654,7 @@ endmodule
 
 ![Screenshot from 2023-09-04 18-33-10](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/ce7216b4-205e-47b3-ab59-5524ec8592ef)
 
-# DAY 5
+# DAY 6
 # GLS Synthesis-Simulation mismatch and Blocking Non-blocking statements
 # GLS Concepts And Flow Using Iverilog
 **Gate level simulation**
