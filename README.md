@@ -757,7 +757,11 @@ endmodule
 * show
 ![Screenshot from 2023-09-04 19-30-55](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/8ddae7de-031f-47d0-b786-5e8daba06dc8)
 
+
 GLS To to Gate level simulation, Invoke iverilog with verilog modules
 * iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_netlist.v tb_blocking_caveat.v
 * ./a.out
 * gtkwave tb_blocking_caveat.vcd
+
+![Screenshot from 2023-09-04 19-33-56](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/4dfa79a5-7c75-4b14-9cb2-b2ec0835b2bc)
+
