@@ -493,3 +493,40 @@ endmodule
 ![Screenshot from 2023-09-04 18-03-50](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/f410d7fc-5b1b-438b-b661-b6778fe61b11)
 # Sequential logic optimizations
 **dff_const1.v**
+module dff_const1(input clk, input reset, output reg q);
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b0;
+	else
+		q <= 1'b1;
+end
+
+endmodule
+
+**simulate**
+* iverilog dff_const1.v tb_dff_const1.v
+* ./a.out
+* gtkwave tb_dff_const1.vcd
+![Screenshot from 2023-09-04 18-08-55](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/ce75a663-ebd0-420e-8f66-a125a7d3208a)
+**synthesis**
+ * read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+ * read_verilog dff_const1.v
+ * synth -top dff_const1
+ * dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+ * abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+ * show
+![Screenshot from 2023-09-04 18-12-09](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/df9733de-f858-49f0-b1a4-33ea35c3493a)
+
+**dff_const2.v**
+module dff_const2(input clk, input reset, output reg q);
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b1;
+	else
+		q <= 1'b1;
+end
+
+endmodule
+
