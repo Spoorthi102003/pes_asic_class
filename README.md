@@ -785,3 +785,6 @@ GLS To to Gate level simulation, Invoke iverilog with verilog modules
 
 ![Screenshot from 2023-09-04 19-33-56](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/4dfa79a5-7c75-4b14-9cb2-b2ec0835b2bc)
 
+# DAY 7
+# Inception of open-source EDA, Openlane and Sky130
+How to talk to computers?
