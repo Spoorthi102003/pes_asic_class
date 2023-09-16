@@ -34,7 +34,8 @@ https://github.com/kunalg123/riscv_workshop_collaterals/blob/master/run.sh
 </details>
 
 # TABLE OF CONTENTS
-## DAY 1 
+<details>
+<summary> DAY 1 </summary>
 1. Introduction to Basic Keywords
   - Introduction
   - From Apps to Hardware
@@ -134,8 +135,9 @@ The contents of the registers can also be viewed.
 ![Screenshot from 2023-08-29 20-20-48](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/bb7d4ba5-1362-4e6b-8dfe-65f5edf22a06)
 
 ![Screenshot from 2023-08-29 20-22-26](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/d8932699-9075-4eee-9cf3-6bb08193aff8)
-
-## DAY 2
+</details>
+<details>
+<summary> DAY 2 </summary>
 
 ## Introduction to ABI
 + An Application Binary Interface (ABI) is a set of rules and conventions that dictate how binary code interacts with and communicates with other binary code, typically at the level of machine code or compiled code. In simpler terms, it defines the interface between two software components or systems that are written in different programming languages, compiled by different compilers, or running on different hardware architectures.
@@ -200,9 +202,11 @@ RISC-V instructions have a common structure with several fields that serve diffe
 ### Register Naming in RISC-V according to ABI
 ![abi-reg](https://web.eecs.utk.edu/~smarz1/courses/ece356/notes/risc/imgs/regfile.png)
 
+</details>
 
-
-## DAY 3
+<details>	
+<summary> DAY 3 </summary>
+	
 # I verilog and GTK Wave
 
    * Make new directory mkdie VSD
@@ -250,7 +254,11 @@ It will also contain fast and slow version of same gate
 
 *Write netlist: write_verilog -noattr good_mux_netlist.v, !gvim good_mux_netlist.v
 ![Screenshot from 2023-08-27 14-15-17](https://github.com/Spoorthi-03/pes_asics_class/assets/65489057/1593d346-196f-4030-9b4b-41ecd033adad)
-# DAY 4
+
+</details>
+
+<details>
+<summary> DAY 4 </summary>
 # Introduction to timing dot libs
 # sky130_fd_sc_hd__tt_025C_1v80.lib
 
@@ -421,7 +429,11 @@ Steps to Flat Synthesis
 **mult8_netlist**
 
 ![Screenshot from 2023-09-03 18-55-52](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/843c87de-ba5b-4899-b0ff-4bc118a13b05)
-# DAY 5
+</details>
+
+<details>
+	
+<summary> DAY 5</summary> 
 # Introduction to optimizations
   There are two types of optimizations.
   1. Combinational optimization
@@ -654,7 +666,9 @@ endmodule
 
 ![Screenshot from 2023-09-04 18-33-10](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/ce7216b4-205e-47b3-ab59-5524ec8592ef)
 
-# DAY 6
+</details>
+<details>
+<summary> DAY 6</summary>
 # GLS Synthesis-Simulation mismatch and Blocking Non-blocking statements
 # GLS Concepts And Flow Using Iverilog
 **Gate level simulation**
@@ -785,3 +799,4 @@ GLS To to Gate level simulation, Invoke iverilog with verilog modules
 
 ![Screenshot from 2023-09-04 19-33-56](https://github.com/Spoorthi102003/pes_asic_class/assets/143829280/4dfa79a5-7c75-4b14-9cb2-b2ec0835b2bc)
 
+</details>
