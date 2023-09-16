@@ -36,6 +36,8 @@ https://github.com/kunalg123/riscv_workshop_collaterals/blob/master/run.sh
 # TABLE OF CONTENTS
 <details>
 <summary> DAY 1 </summary>
+
+# Introduction
 1. Introduction to Basic Keywords
   - Introduction
   - From Apps to Hardware
@@ -259,6 +261,7 @@ It will also contain fast and slow version of same gate
 
 <details>
 <summary> DAY 4 </summary>
+	
 # Introduction to timing dot libs
 # sky130_fd_sc_hd__tt_025C_1v80.lib
 
@@ -434,6 +437,7 @@ Steps to Flat Synthesis
 <details>
 	
 <summary> DAY 5</summary> 
+
 # Introduction to optimizations
   There are two types of optimizations.
   1. Combinational optimization
@@ -669,6 +673,7 @@ endmodule
 </details>
 <details>
 <summary> DAY 6</summary>
+	
 # GLS Synthesis-Simulation mismatch and Blocking Non-blocking statements
 # GLS Concepts And Flow Using Iverilog
 **Gate level simulation**
