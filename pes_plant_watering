@@ -1,66 +1,36 @@
-module pes_plant_watering(
-    input wire clk,            // Clock input
-    input wire reset,          // Reset input
-    input wire moisture_sensor, // Soil moisture sensor input (1 when dry, 0 when wet)
-    input wire light_sensor,   // Light sensor input (1 when low light, 0 when sufficient light)
-    output wire water_pump     // Water pump control output (1 to activate pump, 0 to turn off)
+module pes_plant_watering (
+    input wire clk,         // Clock input
+    input wire rst,         // Reset input
+    input wire moisture_sensor, // Moisture sensor input
+    output wire water_pump  // Water pump control output
 );
 
-    // Define states
-    typedef enum logic [1:0] {
-        IDLE,
-        CHECK_MOISTURE,
-        CHECK_LIGHT,
-        WATER_PLANT
-    } state_type;
+reg [1:0] state;
 
-    // Define signals
-    state_type state, next_state;
-    logic should_water;
+// Define module-level parameters
+parameter IDLE = 2'b00;
+parameter WATER = 2'b01;
 
-    // State transition and output logic
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            state <= IDLE;
-            should_water <= 0;
-        end else begin
-            state <= next_state;
-            should_water <= 0;
-            case(state)
-                IDLE: begin
-                    if (moisture_sensor == 1'b1) begin
-                        next_state = CHECK_MOISTURE;
-                    end else if (light_sensor == 1'b1) begin
-                        next_state = CHECK_LIGHT;
-                    end
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        state <= IDLE;
+    end else begin
+        case(state)
+            IDLE: begin
+                if (moisture_sensor == 1'b0) begin
+                    state <= WATER;
                 end
-                CHECK_MOISTURE: begin
-                    if (moisture_sensor == 1'b0) begin
-                        next_state = IDLE;
-                    end else if (light_sensor == 1'b1) begin
-                        next_state = CHECK_LIGHT;
-                    end else begin
-                        should_water <= 1;
-                        next_state = WATER_PLANT;
-                    end
+            end
+            WATER: begin
+                if (moisture_sensor == 1'b1) begin
+                    state <= IDLE;
                 end
-                CHECK_LIGHT: begin
-                    if (light_sensor == 1'b0) begin
-                        next_state = IDLE;
-                    end else if (moisture_sensor == 1'b1) begin
-                        next_state = CHECK_MOISTURE;
-                    end
-                end
-                WATER_PLANT: begin
-                    if (moisture_sensor == 1'b0) begin
-                        next_state = IDLE;
-                    end
-                end
-            endcase
-        end
+            end
+            default: state <= IDLE;
+        endcase
     end
+end
 
-    // Water pump control
-    assign water_pump = should_water;
+assign water_pump = (state == WATER);
 
 endmodule
